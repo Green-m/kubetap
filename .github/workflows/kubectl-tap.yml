@@ -34,7 +34,8 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y apt-transport-https ca-certificates curl
-        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+        echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" >>  /etc/apt/sources.list.d/kubernetes.list
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B53DC80D13EDEF05
         sudo apt-get update
         sudo apt-get install -y zsh kubectl 
     - 
