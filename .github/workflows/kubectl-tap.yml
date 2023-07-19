@@ -47,47 +47,47 @@ jobs:
       run: |
         go install -v -trimpath -ldflags="-s -w" ./cmd/kubectl-tap
 
-  docker-build-scratch:
-    timeout-minutes: 10
-    name: gcr.io/soluble-oss/kubectl-tap:latest
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - 
-      name: Checkout
-      uses: actions/checkout@v2
-    - 
-      name: Build binary and push to GCR
-      uses: docker/build-push-action@v1
-      with:
-        path: .
-        dockerfile: Dockerfile
-        username: _json_key
-        password: ${{ secrets.SOLUBLE_GCR_OSS_JSON }}
-        registry: gcr.io
-        repository: soluble-oss/kubectl-tap
-        tags: latest
-
-  docker-build-alpine:
-    timeout-minutes: 10
-    name: gcr.io/soluble-oss/kubectl-tap:alpine
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - 
-      name: Checkout
-      uses: actions/checkout@v2
-    - 
-      name: Build binary and push to GCR
-      uses: docker/build-push-action@v1
-      with:
-        path: .
-        dockerfile: Dockerfile.alpine
-        username: _json_key
-        password: ${{ secrets.SOLUBLE_GCR_OSS_JSON }}
-        registry: gcr.io
-        repository: soluble-oss/kubectl-tap
-        tags: alpine
+#  docker-build-scratch:
+#    timeout-minutes: 10
+#    name: gcr.io/soluble-oss/kubectl-tap:latest
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#    - 
+#      name: Checkout
+#      uses: actions/checkout@v2
+#    - 
+#      name: Build binary and push to GCR
+#      uses: docker/build-push-action@v1
+#      with:
+#        path: .
+#        dockerfile: Dockerfile
+#        username: _json_key
+#        password: ${{ secrets.SOLUBLE_GCR_OSS_JSON }}
+#        registry: gcr.io
+#        repository: soluble-oss/kubectl-tap
+#        tags: latest
+#
+#  docker-build-alpine:
+#    timeout-minutes: 10
+#    name: gcr.io/soluble-oss/kubectl-tap:alpine
+#    needs: build
+#    runs-on: ubuntu-latest
+#    steps:
+#    - 
+#      name: Checkout
+#      uses: actions/checkout@v2
+#    - 
+#      name: Build binary and push to GCR
+#      uses: docker/build-push-action@v1
+#      with:
+#        path: .
+#        dockerfile: Dockerfile.alpine
+#        username: _json_key
+#        password: ${{ secrets.SOLUBLE_GCR_OSS_JSON }}
+#        registry: gcr.io
+#        repository: soluble-oss/kubectl-tap
+#        tags: alpine
 
   release:
     timeout-minutes: 15
